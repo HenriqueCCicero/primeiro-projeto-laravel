@@ -7,14 +7,19 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    //regras de negócio
+    //variaveis e conteudos para ir para a view
     public function index(){
-        return [
-            'id' => 1,
-            'name' => 'Teste',
-        ];
+        $users = User::all();
+        return view('users.index', [
+            'greeting' => 'Hello World!',
+            'users' => $users
+        ]);
     }
 
     public function show(User $user){
-        return $user;
+        return view('users.show',[
+          'user' => $user
+        ]);
     }
 }
